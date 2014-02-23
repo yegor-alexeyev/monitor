@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CollectorActivity</string>
+    <string name="app_name">Funf Collector</string>
+    <string name="default_pipeline">
+        {"@type":"edu.mit.media.funf.pipeline.BasicPipeline",
+         "name":"default",
+         "version":1,
+         "data":[
+            "edu.mit.media.funf.probe.builtin.WifiProbe",
+            "edu.mit.media.funf.probe.builtin.LocationProbe"
+         ]
+        }
+    </string>
 </resources>
