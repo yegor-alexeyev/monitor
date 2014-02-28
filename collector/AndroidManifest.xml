@@ -23,13 +23,6 @@
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name="CollectorActivity"
-                  android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <service android:name="edu.mit.media.funf.FunfManager">
             <meta-data android:name="default" android:value="@string/default_pipeline"/>
