@@ -6,6 +6,9 @@
 
     <!-- Launching -->
     <uses-permission android:name="android.permission.BATTERY_STATS" />
+
+    <!-- Connectivity -->
+    <uses-permission android:name="android.permission.INTERNET"/>
    
     <!-- All probes -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -18,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>  
 
     <!-- Wifi probe -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
@@ -25,6 +29,9 @@
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
 
         <service android:name="edu.mit.media.funf.FunfManager">
+            <intent-filter>
+                <action android:name="edu.mit.media.funf.FunfManager"/>
+            </intent-filter>
             <meta-data android:name="default" android:value="@string/default_pipeline"/>
         </service>
         <receiver android:name="edu.mit.media.funf.Launcher" android:enabled="true">
