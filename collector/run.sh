@@ -6,47 +6,9 @@ then
   exit 1
 fi
 
-PROJECT=$(xmllint --xpath 'string(/project/@name)' build.xml) 
-if test -z $PROJECT
-then
-  echo Error: cannot parse ant build file build.xml >&2
-  exit 1
-fi
-echo Project: $PROJECT
+source attributes.sh
 
-PACKAGE=$(xmllint --xpath 'string(/manifest/@package)' AndroidManifest.xml) 
-if test -z $PACKAGE 
-then
-  echo Error: cannot parse package manifest file AndroidManifest.xml >&2
-  exit 1
-fi
-echo Package: $PACKAGE
-
-if test `adb get-state| tail --lines=1` != device
-then
-  echo Error: device is not connected to the Android Debug Bridge
-fi
-
-NDK_PATH=/opt/android.com/android-ndk-r8b
-
-#Temporary workaround
-if [[ -d $NDK_PATH ]] 
-then
-  $NDK_PATH/ndk-build clean || exit 1
-  if test "$1" = debug
-  then
-    $NDK_PATH/ndk-build NDK_DEBUG=1 || exit 1
-  else
-    $NDK_PATH/ndk-build || exit 1
-  fi
-fi
-
-ant debug || exit 1
-#temp ant $1 || exit 1
-echo -n 'Uninstalling existing package version: '; adb uninstall $PACKAGE
-echo 'Installing package: '
-#temp adb -d install -r bin/$PROJECT-$1.apk
-adb -d install -r bin/$PROJECT-debug.apk
+./deploy.sh
 
 if test "$1" = debug
 then
